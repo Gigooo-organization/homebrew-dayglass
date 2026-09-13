@@ -15,9 +15,15 @@ jobs:
       - uses: swift-actions/setup-swift@v2
         with:
           swift-version: "6.0"
+      - name: Prepare local tap
+        run: |
+          brew tap-new --no-git gigooo-organization/dayglass
+          tap_path="$(brew --repository)/Library/Taps/gigooo-organization/homebrew-dayglass"
+          mkdir -p "$tap_path/Formula"
+          cp Formula/dayglass.rb "$tap_path/Formula/dayglass.rb"
       - name: Style
-        run: brew style --formula Formula/dayglass.rb
+        run: brew style --formula gigooo-organization/dayglass/dayglass
       - name: Audit
-        run: brew audit --formula --strict Formula/dayglass.rb
+        run: brew audit --formula --strict gigooo-organization/dayglass/dayglass
       - name: Test
-        run: brew test Formula/dayglass.rb
+        run: brew test gigooo-organization/dayglass/dayglass
