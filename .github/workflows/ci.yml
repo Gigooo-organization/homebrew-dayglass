@@ -25,5 +25,7 @@ jobs:
         run: brew style --formula gigooo-organization/dayglass/dayglass
       - name: Audit
         run: brew audit --formula --strict gigooo-organization/dayglass/dayglass
-      - name: Test
-        run: brew test gigooo-organization/dayglass/dayglass
+      - name: Install and smoke test
+        run: |
+          brew install --build-from-source gigooo-organization/dayglass/dayglass
+          "$(brew --prefix)/bin/dayglass" --version
