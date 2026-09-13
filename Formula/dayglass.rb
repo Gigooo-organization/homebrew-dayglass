@@ -6,8 +6,8 @@ class Dayglass < Formula
   sha256 "534d513fa43e3d1b2e6940371462cac77d22e25826ca26b66763e7ca12ae6746"
   license "MIT"
 
-  depends_on "gh"
   depends_on arch: :arm64
+  depends_on "gh"
   depends_on macos: :ventura
 
   def install
