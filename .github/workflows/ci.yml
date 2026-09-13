@@ -25,7 +25,14 @@ jobs:
         run: brew style --formula gigooo-organization/dayglass/dayglass
       - name: Audit
         run: brew audit --formula --strict gigooo-organization/dayglass/dayglass
-      - name: Install and smoke test
+      - name: Build formula source
+        shell: bash
         run: |
-          brew install --build-from-source gigooo-organization/dayglass/dayglass
-          "$(brew --prefix)/bin/dayglass" --version
+          set -euo pipefail
+          source_url="$(ruby -e 'puts File.read("Formula/dayglass.rb")[/url "([^"]+)"/, 1]')"
+          tmp="$(mktemp -d)"
+          curl -LfsS "$source_url" | tar -xz -C "$tmp"
+          source_dir="$(find "$tmp" -mindepth 1 -maxdepth 1 -type d -print -quit)"
+          swift build --package-path "$source_dir" --disable-sandbox -c release
+          bin_path="$(swift build --package-path "$source_dir" --disable-sandbox -c release --show-bin-path)"
+          "$bin_path/dayglass" --version
