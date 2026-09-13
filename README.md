@@ -3,12 +3,12 @@
 Homebrew tap for [dayglass](https://github.com/Gigooo-organization/dayglass).
 
 ```sh
-brew tap gigooo-organization/dayglass
-brew install gigooo-organization/tap/dayglass
+brew trust --formula gigooo-organization/dayglass/dayglass
+brew install gigooo-organization/dayglass/dayglass
 dayglass setup
 ```
 
-The formula builds dayglass from the tagged Swift source on the local Apple Silicon Mac and depends on the GitHub CLI (`gh`) for the read-only activity sync. After installation, `dayglass setup` creates the local hooks, loopback OTLP receiver, launchd agents, source identity, and project configuration template.
+Homebrew requires explicit trust before loading a formula from a non-official tap. The command above trusts only the dayglass formula. It builds dayglass from the tagged Swift source on the local Apple Silicon Mac and depends on the GitHub CLI (`gh`) for the read-only activity sync. After installation, `dayglass setup` creates the local hooks, loopback OTLP receiver, launchd agents, source identity, and project configuration template.
 
 The source build requires a Swift 6 toolchain (for example, Xcode 16 or a compatible standalone Swift installation).
 
