@@ -27,13 +27,11 @@ jobs:
           version="${tag#v}"
           url="https://github.com/Gigooo-organization/dayglass/archive/refs/tags/${tag}.tar.gz"
           sha256="$(curl -LfsS "$url" | sha256sum | cut -d ' ' -f 1)"
-          FORMULA_VERSION="$version" FORMULA_URL="$url" FORMULA_SHA256="$sha256" ruby <<'RUBY'
+          FORMULA_URL="$url" FORMULA_SHA256="$sha256" ruby <<'RUBY'
           path = "Formula/dayglass.rb"
           text = File.read(path)
-          version = ENV.fetch("FORMULA_VERSION")
           url = ENV.fetch("FORMULA_URL")
           sha256 = ENV.fetch("FORMULA_SHA256")
-          text = text.sub(/version "[^"]+"/, "version \"#{version}\"")
           text = text.sub(/url "[^"]+"/, "url \"#{url}\"")
           text = text.sub(/sha256 "[^"]+"/, "sha256 \"#{sha256}\"")
           File.write(path, text)
