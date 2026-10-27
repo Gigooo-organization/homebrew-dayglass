@@ -1,8 +1,8 @@
 class Dayglass < Formula
   desc "Local-first work-time evidence and reporting for macOS"
   homepage "https://github.com/Gigooo-organization/dayglass"
-  url "https://github.com/Gigooo-organization/dayglass/archive/refs/tags/v0.6.0.tar.gz"
-  sha256 "0cf41687bcd579d520a6ade5c894e5b5791a1c5c113986ea49ad7db09070dbd6"
+  url "https://github.com/Gigooo-organization/dayglass/archive/refs/tags/v0.6.1.tar.gz"
+  sha256 "e9fce55b4f2cbd59f99a3fb1504924acf68876d8f6ba519a888cba992e764ccf"
   license "MIT"
 
   depends_on arch: :arm64
